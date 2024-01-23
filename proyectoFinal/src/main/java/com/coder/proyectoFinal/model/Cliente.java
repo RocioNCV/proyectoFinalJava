@@ -1,4 +1,4 @@
-package model;
+package com.coder.proyectoFinal.model;
 
 public class Cliente {
     private Integer idCliente;
