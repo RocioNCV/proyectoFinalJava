@@ -1,8 +1,11 @@
 package com.coder.proyectoFinal.model;
 
+import jakarta.persistence.Id;
+
 import java.math.BigDecimal;
 
 public class Producto {
+    @Id
     private Integer idProducto;
     private Integer cantidad;
     private Integer codigo;
