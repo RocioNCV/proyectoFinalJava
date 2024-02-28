@@ -1,11 +1,18 @@
 package com.coder.proyectoFinal.model;
 
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Producto {
+@Entity
+@Table(name="producto")
+@NamedQuery(name="Producto.findAll", query="SELECT p FROM Producto p")
+public class Producto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer idProducto;
     private Integer cantidad;
     private Integer codigo;
@@ -61,5 +68,19 @@ public class Producto {
 
     public void setPrecio(BigDecimal precio) {
         this.precio = precio;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Producto [");
+        if (idProducto != null)
+            builder.append("idProducto=").append(idProducto).append(", ");
+        if (cantidad != null)
+            builder.append("cantidad=").append(cantidad).append(", ");
+        if (codigo != null)
+            builder.append("codigo=").append(codigo);
+        builder.append("]");
+        return builder.toString();
     }
 }

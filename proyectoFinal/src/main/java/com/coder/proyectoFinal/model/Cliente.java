@@ -1,20 +1,30 @@
 package com.coder.proyectoFinal.model;
 
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-public class Cliente {
+import java.io.Serializable;
+
+@Entity
+@Table(name="cliente")
+@NamedQuery(name="Cliente.findAll", query="SELECT c FROM Cliente c")
+public class Cliente implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer idCliente;
     private String nombre;
+    private String apellido;
     private String email;
     private Integer dni;
 
     public Cliente() {
     }
 
-    public Cliente(Integer idCliente, String nombre, String email, Integer dni) {
+    public Cliente(Integer idCliente, String nombre, String apellido, String email, Integer dni) {
         this.idCliente = idCliente;
         this.nombre = nombre;
+        this.apellido = apellido;
         this.email = email;
         this.dni = dni;
     }
@@ -49,5 +59,25 @@ public class Cliente {
 
     public void setDni(Integer dni) {
         this.dni = dni;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Cliente [");
+        if (idCliente != null)
+            builder.append("idCliente=").append(idCliente).append(", ");
+        if (dni != null)
+            builder.append("dni=").append(dni);
+        builder.append("]");
+        return builder.toString();
     }
 }
